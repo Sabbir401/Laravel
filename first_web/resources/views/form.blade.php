@@ -11,29 +11,19 @@
 </head>
 
 <body>
-    <form action="{{url('/')}}/register" method="post">
+    <form action="{{ url('/') }}/register" method="post">
         @csrf
+        @php
+            $demo = 1;
+        @endphp
         <div class="container">
             <h1 class="text-center">Registration</h1>
-            <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" class="form-control" name="name" id="" aria-describedby="HelpId"
-                    placeholder="">
-                {{-- <small id="HelpId" class="form-text text-muted">Help text</small> --}}
-            </div>
-            <div class="form-group">
-                <label for="">Email</label>
-                <input type="email" class="form-control" name="email" id="" aria-describedby="HelpId"
-                    placeholder="">
-                {{-- <small id="HelpId" class="form-text text-muted">Help text</small> --}}
-            </div>
-            <div class="form-group">
-                <label for="">Password</label>
-                <input type="password" class="form-control" name="pass" id="" aria-describedby="HelpId"
-                    placeholder=""><br>
-                {{-- <small id="HelpId" class="form-text text-muted">Help text</small> --}}
-            </div>
-            <button class="btn btn-primary">submit</button>
+            <x-input type="text" name="name" label="Please enter your name" :demo="$demo" />
+            <x-input type="email" name="email" label="Please enter your email"/>
+            <x-input type="password" name="name" label="Password"/>
+            <x-input type="password" name="password_confirmation" label="Confirm Password" />
+
+            <button class="btn btn-dark">submit</button>
         </div>
     </form>
 </body>
