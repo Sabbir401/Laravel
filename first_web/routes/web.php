@@ -5,6 +5,8 @@ use App\Http\Controllers\DemoController;
 use App\Http\Controllers\SingleActionController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\CustomerController;
+use App\Models\Customer;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +31,13 @@ use App\Http\Controllers\RegistrationController;
 Route::get('/register', [RegistrationController:: class, 'index']);
 
 Route::post('/register', [RegistrationController:: class, 'register']);
+
+Route::get('/customer', [CustomerController::class, 'index'])->name('customer.create');
+
+Route::get('/customer/view', [CustomerController::class, 'view']);
+
+Route::post('/customer', [CustomerController::class, 'store']);
+
+Route::get('/', [DemoController:: class, 'index']);
+
+Route::get('/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
