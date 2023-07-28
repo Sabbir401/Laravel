@@ -32,7 +32,7 @@ Route::get('/register', [RegistrationController:: class, 'index']);
 
 Route::post('/register', [RegistrationController:: class, 'register']);
 
-Route::get('/customer', [CustomerController::class, 'index'])->name('customer.create');
+Route::get('/customer/create', [CustomerController::class, 'index'])->name('customer.create');
 
 Route::get('/customer/view', [CustomerController::class, 'view']);
 
@@ -41,3 +41,7 @@ Route::post('/customer', [CustomerController::class, 'store']);
 Route::get('/', [DemoController:: class, 'index']);
 
 Route::get('/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
+
+Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
+
+Route::post('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
