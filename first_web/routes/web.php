@@ -32,7 +32,7 @@ Route::get('/register', [RegistrationController:: class, 'index']);
 
 Route::post('/register', [RegistrationController:: class, 'register']);
 
-Route::get('/customer/create', [CustomerController::class, 'index'])->name('customer.create');
+Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
 
 Route::get('/customer/view', [CustomerController::class, 'view']);
 

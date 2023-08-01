@@ -23,9 +23,95 @@
 <body>
     <form action="{{ $url }}" method="post">
         @csrf
-        @php
-            $demo = 1;
-        @endphp
+
+        <div class="container">
+            <h1 class="text-center">{{ $title }}</h1>
+            <div class="paraller">
+                <div>
+                    <label>Name</label><br>
+                    <input type="text" name="name" class="from-control"  />
+                </div>
+
+                <div>
+                    <label>Email</label><br>
+                    <input type="text" name="email"  />
+                </div>
+
+            </div>
+            <div class="paraller">
+                <div>
+                    <label>Password</label><br>
+                    <input type="password" name="password" />
+                </div>
+                <div>
+                    <label>Confirm Password</label><br>
+                    <input type="password" name="password_confirmation" />
+                </div>
+            </div>
+            <div class="paraller">
+                <div>
+                    <label>States</label><br>
+                    <input type="text" name="states"  />
+                </div>
+                <div>
+                    <label>Country</label><br>
+                    <input type="text" name="country" />
+                </div>
+            </div>
+            <div class="parallel">
+                <div>
+                    <label>Address</label><br>
+                    <textarea name="address"></textarea>
+                </div>
+            </div>
+
+            <div class="paraller">
+                <div>Gender<br>
+                    <input type="radio" name="gender" value="M" /><label>Male</label>
+                    <input type="radio" name="gender" value="F" /><label>Female</label>
+                    <input type="radio" name="gender" value="O" /><label>Other</label><br>
+                </div>
+
+                <div>
+                    <label>Date of Birth</label><br>
+                    <input type="date" name="dob"  />
+                </div>
+            </div>
+
+
+            <button class="btn btn-primary">submit</button>
+        </div>
+    </form>
+</body>
+
+</html>
+
+{{-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @stack('title')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.rtl.min.css">
+    <title>Document</title>
+    <style>
+        .paraller {
+            display: flex;
+        }
+
+        .paraller>div {
+            margin: 10px;
+            width: 50%
+        }
+    </style>
+</head>
+
+<body>
+    <form action="{{ $url }}" method="post">
+        @csrf
+
         <div class="container">
             <h1 class="text-center">{{ $title }}</h1>
             <div class="paraller">
@@ -89,4 +175,4 @@
     </form>
 </body>
 
-</html>
+</html> --}}

@@ -7,8 +7,8 @@ use App\Models\Customer;
 
 class CustomerController extends Controller
 {
-    public function index()
-    {
+    public function create()
+    {   
         $url = url('/customer');
         $title = "Customer Registration";
         $data = compact('url','title');
