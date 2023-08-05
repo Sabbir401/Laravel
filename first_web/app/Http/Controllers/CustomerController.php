@@ -8,7 +8,7 @@ use App\Models\Customer;
 class CustomerController extends Controller
 {
     public function create()
-    {   
+    {
         $url = url('/customer');
         $title = "Customer Registration";
         $data = compact('url','title');
@@ -32,11 +32,23 @@ class CustomerController extends Controller
         return redirect('/customer/view');
     }
 
-    public function view()
+    public function view(Request $request)
     {
-        $customers = Customer::all();
-        $data =compact('customers');
+        $search = $request['search'] ?? "";
+        if ($search != ""){
+            $customers = Customer::where('name','LIKE', "%$search%")->orWhere('email','LIKE', "%$search%")->get();
+        }else{
+            $customers = Customer::paginate(15);
+        }
+        $data =compact('customers', 'search');
         return view('customer-view')->with($data);
+    }
+
+    public function trash()
+    {
+        $customers = Customer::onlyTrashed()->get();
+        $data =compact('customers');
+        return view('customer-trash')->with($data);
     }
 
     public function delete($id)
@@ -48,6 +60,28 @@ class CustomerController extends Controller
         }
 
         return redirect('/customer/view');
+    }
+
+    public function forcedelete($id)
+    {
+        // Customer::find($id)->delete();
+        $customer = Customer::withTrashed()->find($id);
+        if (!is_null($customer)){
+            $customer->forcedelete();
+        }
+
+        return redirect()->back();
+    }
+
+    public function restore($id)
+    {
+        // Customer::find($id)->delete();
+        $customer = Customer::withTrashed()->find($id);
+        if (!is_null($customer)){
+            $customer->restore();
+        }
+
+        return redirect('/customer/trash');
     }
 
     public function edit($id)

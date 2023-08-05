@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Trash</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,34 +14,20 @@
 
 <body>
     <div class="container">
-        <div class="row m-2">
-            <form action="" class="col-9">
-                <div class="form-group">
-                    <input type="search" name="search" id="" class="form-control" placeholder="Search here"
-                        aria-describedby="helpId" value="{{$search}}">
-                </div>
-                <button class="btn btn-primary">Search</button>
-                <a href="{{url('/customer/view')}}">
-                    <button class="btn btn-danger" type="button">Reset</button>
-                </a>
-            </form>
-            <div class="col-3">
-                <a href="{{ route('customer.create') }}">
-                    <button class="btn btn-primary">Add</button>
-                </a>
-                <a href="{{ url('customer/trash') }}">
-                    <button class="btn btn-danger">Go To Trash</button>
-                </a>
-            </div>
-        </div>
-
+        <a href="{{ route('customer.create') }}">
+            <button class="btn btn-primary">Add</button>
+        </a>
+        <a href="{{ url('customer/view') }}">
+            <button class="btn btn-primary">Customer View</button>
+        </a>
         <table class="table">
+
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Gender</th>
-                    <th>Birthday</th>
+                    <th>Date of Birht</th>
                     <th>Address</th>
                     <th>State</th>
                     <th>Country</th>
@@ -80,11 +66,11 @@
                         </td>
                         <td>
                             {{-- <a href="{{url('/customer/delete/')}}/{{$customer->customer_id}}"> --}}
-                            <a href="{{ route('customer.delete', ['id' => $customer->customer_id]) }}">
-                                <button class="btn btn-danger">Trash</button>
+                            <a href="{{route('customer.force-delete', ['id' => $customer->customer_id])}}">
+                                <button class="btn btn-danger">Delete</button>
                             </a>
-                            <a href="{{ route('customer.edit', ['id' => $customer->customer_id]) }}">
-                                <button class="btn btn-primary">Edit</button>
+                            <a href="{{route('customer.restore', ['id' => $customer->customer_id])}}">
+                                <button class="btn btn-primary">Restore</button>
                             </a>
                         </td>
                     </tr>
@@ -92,9 +78,6 @@
 
             </tbody>
         </table>
-        <div class="row">
-            {{$customers->onEachSide(5)->links()}}
-        </div>
     </div>
 
 </body>
