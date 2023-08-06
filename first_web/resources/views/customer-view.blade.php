@@ -10,6 +10,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        /* .row{
+                height: 20px;
+                width: 20px;
+            } */
+    </style>
 </head>
 
 <body>
@@ -18,10 +24,10 @@
             <form action="" class="col-9">
                 <div class="form-group">
                     <input type="search" name="search" id="" class="form-control" placeholder="Search here"
-                        aria-describedby="helpId" value="{{$search}}">
+                        aria-describedby="helpId" value="{{ $search }}">
                 </div>
                 <button class="btn btn-primary">Search</button>
-                <a href="{{url('/customer/view')}}">
+                <a href="{{ url('/customer/view') }}">
                     <button class="btn btn-danger" type="button">Reset</button>
                 </a>
             </form>
@@ -91,9 +97,10 @@
                 @endforeach
 
             </tbody>
+
         </table>
         <div class="row">
-            {{$customers->onEachSide(5)->links()}}
+            {{ $customers->links() }}
         </div>
     </div>
 

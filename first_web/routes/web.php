@@ -27,18 +27,20 @@ use Illuminate\Http\Request;
 
 // Route::resource('photo', PhotoController:: class);
 
-Route::get('/register', [RegistrationController::class, 'index']);
-Route::post('/register', [RegistrationController::class, 'register']);
-Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
-Route::get('/customer/view', [CustomerController::class, 'view']);
-Route::post('/customer', [CustomerController::class, 'store']);
-Route::get('/customer/trash', [CustomerController::class, 'trash']);
-Route::get('/', [DemoController::class, 'index']);
-Route::get('/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
-Route::get('/customer/restore/{id}', [CustomerController::class, 'restore'])->name('customer.restore');
-Route::get('/customer/force-delete/{id}', [CustomerController::class, 'forcedelete'])->name('customer.force-delete');
-Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
-Route::post('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
+Route::group(['prefix'=>'/customer'], function () {
+    Route::get('/register', [RegistrationController::class, 'index']);
+    Route::post('/register', [RegistrationController::class, 'register']);
+    Route::get('/create', [CustomerController::class, 'create'])->name('customer.create');
+    Route::get('/view', [CustomerController::class, 'view']);
+    Route::post('', [CustomerController::class, 'store']);
+    Route::get('/trash', [CustomerController::class, 'trash']);
+    Route::get('/', [DemoController::class, 'index']);
+    Route::get('/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
+    Route::get('/restore/{id}', [CustomerController::class, 'restore'])->name('customer.restore');
+    Route::get('/force-delete/{id}', [CustomerController::class, 'forcedelete'])->name('customer.force-delete');
+    Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::post('/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
+});
 
 Route::get('get-all-session', function () {
     $session = session()->all();
@@ -61,4 +63,10 @@ Route::get('/upload', function () {
     return view('upload');
 });
 
-Route::post('/upload', [DemoController::class, 'upload'] );
+Route::post('/upload', [DemoController::class, 'upload']);
+
+Route::get('/lan', function () {
+    return view('lan');
+});
+
+Route::get('/data', [DemoController::class, 'data']);

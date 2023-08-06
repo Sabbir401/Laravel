@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\member;
 
 class DemoController extends Controller
 {
@@ -20,5 +21,12 @@ class DemoController extends Controller
     {
         $filename = time()."-kazi.".$request->file('image')->getClientOriginalExtension();
         echo $request->file('image')->storeAs('public/upload',$filename);
+    }
+
+
+    public function data()
+    {
+        return member::with('getGroup')->get();
+
     }
 }
